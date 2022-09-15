@@ -85,5 +85,34 @@
     </table>
     <hr>
     <h2>snippet</h2>
+    <blockquote>
+        Return css rule value with gradients from SASS function
+        <a href="https://stackoverflow.com/questions/56163557/return-css-rule-value-with-gradients-from-sass-function">
+        click here</a> 
+    </blockquote>
+    <br>
+    <pre>
+        @mixin stripes($direction, $colors) {
+            $length: length($colors);
+            
+            @if $length > 1 {
+              $stripes: ();
+              
+              @for $i from 1 through $length {
+                $stripe: (100% / $length) * ($i - 1);
+                
+                @if $i > 1 {
+                  $stripes: append($stripes, nth($colors, $i - 1) $stripe, comma);
+                }
+                
+                $stripes: append($stripes, nth($colors, $i) $stripe, comma);
+              }
+              
+              background-image: linear-gradient($direction, $stripes);
+            } @else if $length == 1 {
+              background-color: $colors;
+            }
+        }
+    </pre>
 </body>
 </html>
